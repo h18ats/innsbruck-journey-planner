@@ -21,6 +21,8 @@ const STAGES = [
       "❄️ Don't forget: base layers, ski socks, goggles, sunscreen",
       "⏰ Set alarm for 5:00 AM — Uber pickup at 5:30 AM"
     ],
+    wazeUrl: "https://waze.com/ul?ll=51.2567,-0.1853&navigate=yes",
+    wazeLabel: "Navigate to Upper Gatton Park",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
     imageAlt: "Evening motorway driving"
   },
@@ -36,6 +38,8 @@ const STAGES = [
     tag: "15 MIN",
     weather: { temp: "6°C", condition: "Clear", icon: "🌙", wind: "8 km/h W", humidity: "80%" },
     description: "Quick 15-minute Uber ride from Jim's to Gatwick South Terminal. BA operates from the South Terminal at Gatwick. You want to be at the airport by 6:00 AM for check-in and bag drop — gives you nearly 2 hours before the 7:45 departure.",
+    wazeUrl: "https://waze.com/ul?ll=51.1537,-0.1821&navigate=yes",
+    wazeLabel: "Navigate to Gatwick South Terminal",
     walkthrough: [
       "⏰ Wake up: 5:00 AM — quick shower, grab bags",
       "🚕 Uber pickup: 5:30 AM — pre-book the night before",
@@ -212,6 +216,8 @@ const STAGES = [
       "🏔️ Stunning scenery — Inn Valley with snow-capped peaks on both sides",
       "💡 Aim to arrive St Anton ~12:45 — park, grab lunch, hit the slopes by 1:30 PM"
     ],
+    wazeUrl: "https://waze.com/ul?ll=47.1297,10.2685&navigate=yes",
+    wazeLabel: "Navigate to St Anton am Arlberg",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
     imageAlt: "Alpine motorway through mountains"
   },
@@ -285,6 +291,8 @@ const STAGES = [
       "🅿️ Hotel has parking available",
       "💡 Designated driver tonight, lads!"
     ],
+    wazeUrl: "https://waze.com/ul?ll=47.1397,10.5653&navigate=yes",
+    wazeLabel: "Navigate to Hotel Schrofenstein, Landeck",
     image: "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?w=800&q=80",
     imageAlt: "Mountain road at dusk"
   },
@@ -535,6 +543,13 @@ export default function JourneyPlanner() {
                   ))}
                 </div>
               </div>
+
+              {stage.wazeUrl && (
+                <a href={stage.wazeUrl} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "16px 24px", borderRadius: 14, border: "1px solid #33ccff", background: "linear-gradient(135deg, rgba(51,204,255,0.15), rgba(51,204,255,0.05))", color: "#33ccff", textDecoration: "none", fontSize: "1rem", fontWeight: 700, marginBottom: 24, transition: "all 0.2s" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.54 6.63c-1.62-4.15-6.38-5.93-9.47-5.59C7.29 1.44 3.52 4.01 2.42 7.8 1.2 12.02 3.28 16.78 6.33 19.31c1.07.89 2.01 1.84 2.67 2.98.37.64.71 1.35 1.23 1.71.82.57 1.85-.22 1.85-.22s2.42-1.67 3.72-3.1c2.69-2.96 5.65-7.89 4.74-14.05zm-8.5 8.87c-2.74 0-4.96-2.22-4.96-4.96s2.22-4.96 4.96-4.96 4.96 2.22 4.96 4.96-2.22 4.96-4.96 4.96z"/></svg>
+                  {stage.wazeLabel}
+                </a>
+              )}
 
               <div style={{ display: "flex", justifyContent: "space-between", gap: 12, marginTop: 24 }}>
                 <button onClick={() => activeStage > 0 && goTo(activeStage - 1)} disabled={activeStage === 0} style={{ flex: 1, padding: "14px 20px", borderRadius: 12, border: "1px solid #252b38", background: "#14181f", color: activeStage > 0 ? "#e4e8f0" : "#3a4050", cursor: activeStage > 0 ? "pointer" : "default", fontSize: "0.9rem", fontWeight: 600, fontFamily: "inherit" }}>
