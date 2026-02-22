@@ -11,7 +11,7 @@
 <body style="margin:0; background:#0a0d12;">
   <div id="root"></div>
   <script type="text/babel" data-type="module">
-    const { useState } = React;
+    const { useState, useRef } = React;
 
     // Inline the component to avoid module import issues with file:// protocol
     const STAGES = [
@@ -677,9 +677,48 @@ const TRIP_SUMMARY = {
 };
 
 function JourneyPlanner() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => sessionStorage.getItem('ski-auth') === 'true');
+  const [password, setPassword] = useState('');
+  const [shaking, setShaking] = useState(false);
+  const inputRef = useRef(null);
   const [activeStage, setActiveStage] = useState(0);
   const [view, setView] = useState("journey");
   const [animKey, setAnimKey] = useState(0);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === 'ski2026') {
+      sessionStorage.setItem('ski-auth', 'true');
+      setIsAuthenticated(true);
+    } else {
+      setShaking(true);
+      setTimeout(() => setShaking(false), 500);
+      setPassword('');
+      inputRef.current?.focus();
+    }
+  };
+
+  if (!isAuthenticated) {
+    return React.createElement("div", { style: { fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif", background: "#0a0d12", color: "#e4e8f0", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" } },
+      React.createElement("form", { onSubmit: handleLogin, style: { background: "#14181f", border: "1px solid #1e2433", borderRadius: 16, padding: "2.5rem", width: 360, textAlign: "center" } },
+        React.createElement("div", { style: { fontSize: "3rem", marginBottom: 16 } }, "⛷️"),
+        React.createElement("h1", { style: { fontSize: "1.3rem", fontWeight: 700, marginBottom: 4 } }, "Innsbruck Ski Trip"),
+        React.createElement("p", { style: { color: "#6b7588", fontSize: "0.85rem", marginBottom: 24 } }, "Enter the password to view the trip planner"),
+        React.createElement("input", {
+          ref: inputRef,
+          type: "password",
+          value: password,
+          onChange: (e) => setPassword(e.target.value),
+          placeholder: "Password",
+          autoFocus: true,
+          style: { width: "100%", padding: "12px 16px", borderRadius: 10, border: shaking ? "1px solid #ff6b6b" : "1px solid #252b38", background: "#0e1118", color: "#e4e8f0", fontSize: "1rem", fontFamily: "inherit", outline: "none", boxSizing: "border-box", animation: shaking ? "shake 0.5s ease" : "none" }
+        }),
+        shaking && React.createElement("div", { style: { color: "#ff6b6b", fontSize: "0.8rem", marginTop: 8 } }, "Wrong password"),
+        React.createElement("button", { type: "submit", style: { width: "100%", marginTop: 16, padding: "12px 24px", borderRadius: 10, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.15)", color: "#4ecdc4", cursor: "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit" } }, "Enter"),
+        React.createElement("style", null, `@keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }`)
+      )
+    );
+  }
 
   const stage = STAGES[activeStage];
   const progress = (activeStage / (STAGES.length - 1)) * 100;
