@@ -14,12 +14,17 @@
   <script type="text/babel" data-type="module">
     const { useState, useRef, useEffect } = React;
 
-    // Microsoft SSO (personal accounts only)
-    const ALLOWED_EMAIL = "andy.batty@hotmail.com";
+    // Microsoft SSO (personal + work/school accounts)
+    const ALLOWED_EMAILS = [
+      "andy.batty@hotmail.com",
+      "jh@yellowbus.cc",
+      "j.d.herbert@outlook.com",
+      "lee.a.curtis@gmail.com",
+    ];
     const msalInstance = new msal.PublicClientApplication({
       auth: {
         clientId: "12c370ba-d0eb-43e1-b156-0b94c8c0377e",
-        authority: "https://login.microsoftonline.com/consumers",
+        authority: "https://login.microsoftonline.com/common",
         redirectUri: window.location.origin + "/",
       },
       cache: { cacheLocation: "localStorage", staleStateTTLInSeconds: 300 },
@@ -701,11 +706,11 @@ function JourneyPlanner() {
         const accounts = msalInstance.getAllAccounts();
         if (resp && resp.account) {
           const email = (resp.account.username || "").toLowerCase();
-          if (email === ALLOWED_EMAIL) { setAuthState("app"); }
+          if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
           else { setAuthError(email); setAuthState("denied"); }
         } else if (accounts.length > 0) {
           const email = (accounts[0].username || "").toLowerCase();
-          if (email === ALLOWED_EMAIL) { setAuthState("app"); }
+          if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
           else { setAuthError(email); setAuthState("denied"); }
         } else {
           setAuthState("login");
@@ -721,7 +726,7 @@ function JourneyPlanner() {
     else {
       msalInstance.loginPopup(req).then((resp) => {
         const email = (resp.account.username || "").toLowerCase();
-        if (email === ALLOWED_EMAIL) { setAuthState("app"); }
+        if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
         else { setAuthError(email); setAuthState("denied"); }
       }).catch(() => {});
     }
