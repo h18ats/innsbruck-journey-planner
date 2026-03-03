@@ -264,7 +264,7 @@ const STAGES = [
       "🎵 Both open from early afternoon — the party peaks 15:30-18:00",
       "🍻 Beer ~€5-7, Jägermeister ~€3-4",
       "⚠️ Don't overdo it — you need to drive to Landeck tonight!",
-      "🚗 Drive to Hotel Schrofenstein in Landeck: only 20 min",
+      "🚗 Drive to Hotel Bruggner Stub'n in Landeck: only 20 min",
       "💡 Alternatively: skip après, drive to Landeck first, then dinner there"
     ],
     image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80",
@@ -274,14 +274,14 @@ const STAGES = [
     id: 11,
     time: "18:30 CET",
     localTime: "18:30",
-    title: "Drive to Hotel Schrofenstein, Landeck",
+    title: "Drive to Hotel Bruggner Stub'n, Landeck",
     location: "St Anton → S16 → Landeck",
     icon: "🌙",
     type: "drive",
     tagColor: "#a78bfa",
     tag: "20 MIN",
     weather: { temp: "-1°C → 1°C", condition: "Clear", icon: "🌙", wind: "5 km/h", humidity: "65%" },
-    description: "Short 20-minute drive east from St Anton to Landeck for your first night at Hotel Schrofenstein. It's getting dark (sunset 18:26) so watch for ice on the road. The hotel is right in the centre of Landeck — easy to find.",
+    description: "Short 20-minute drive east from St Anton to Landeck for your first night at Hotel Bruggner Stub'n. It's getting dark (sunset 18:26) so watch for ice on the road. The hotel is on Flirstrasse, just outside the town centre — easy to find.",
     walkthrough: [
       "🛣️ Route: St Anton → S16 East → Landeck exit",
       "⏱️ Distance: ~25 km, Time: ~20 min",
@@ -292,29 +292,28 @@ const STAGES = [
       "💡 Designated driver tonight, lads!"
     ],
     wazeUrl: "https://waze.com/ul?ll=47.1397,10.5653&navigate=yes",
-    wazeLabel: "Navigate to Hotel Schrofenstein, Landeck",
+    wazeLabel: "Navigate to Hotel Bruggner Stub'n, Landeck",
     image: "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?w=800&q=80",
     imageAlt: "Mountain road at dusk"
   },
   {
     id: 12,
-    time: "19:00 CET",
-    localTime: "19:00",
-    title: "Hotel Schrofenstein ★★★★",
-    location: "Landeck Town Centre",
+    time: "18:00 CET",
+    localTime: "18:00",
+    title: "Hotel Bruggner Stub'n ★★★",
+    location: "Flirstrasse 30, Landeck",
     icon: "🏨",
     type: "arrival",
     tagColor: "#4ecdc4",
     tag: "✅ CHECK-IN",
     weather: { temp: "1°C", condition: "Clear", icon: "🌙", wind: "5 km/h", humidity: "65%" },
-    description: "Check in to Hotel Schrofenstein — a 4-star hotel right in the centre of Landeck. €246 for a triple room. The hotel has a spa, pool, restaurant and bar. Perfect for your first night — dump your bags, freshen up, and head to the restaurant or explore Landeck for dinner.",
+    description: "Check in to Hotel Bruggner Stub'n — a highly-rated 3-star Tyrolean guesthouse on Flirstrasse. Booking.com ref: 5825157964. Check-in window 18:00–19:00. Free on-site parking. The restaurant here is legendary — half-board available, the schnitzel is raved about. No spa but you won't need one for a single night.",
     walkthrough: [
-      "🅿️ Park in hotel parking",
-      "🚪 Head to reception — check in, triple room booked",
-      "💰 Cost: €246 for the night (triple room, 3 adults)",
-      "♨️ Spa and pool available — great after a day of travel and skiing",
-      "🍽️ Hotel restaurant for dinner, or explore Landeck town",
-      "⭐ 4-star hotel, 8.0 review rating",
+      "🅿️ Free on-site parking — pull straight in",
+      "🚪 Head to reception — check-in 18:00–19:00, triple room booked",
+      "📋 Booking ref: 5825157964",
+      "🍽️ Hotel restaurant for dinner — the schnitzel is famous!",
+      "⭐ 3-star hotel, 8.5 on Booking.com / 4.8 on Google",
       "⏰ Tomorrow: check out, drive 20 min to St Anton, check into Hotel Kirchplatz"
     ],
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
@@ -325,20 +324,20 @@ const STAGES = [
     time: "06:30 CET",
     localTime: "06:30",
     title: "Early Start → Drive to St Anton",
-    location: "Hotel Schrofenstein → St Anton am Arlberg",
+    location: "Hotel Bruggner Stub'n → St Anton am Arlberg",
     icon: "🚗",
     type: "drive",
     tagColor: "#ffd93d",
     tag: "FIRST LIFT!",
     weather: { temp: "-2°C → -4°C", condition: "Clear", icon: "🌅", wind: "5 km/h", humidity: "55%" },
-    description: "First lift is at 08:30 — so it's an early start! Wake up at 06:30, grab a quick breakfast at the hotel, check out by 07:30, and drive the 20 minutes to St Anton. Drop your bags at Hotel Kirchplatz reception (rooms won't be ready yet but they'll store luggage), then walk straight to the Galzigbahn. You'll be queuing for the first gondola by 08:15.",
+    description: "First lift is at 08:30 — so it's an early start! Wake up at 06:30, grab a quick breakfast at the hotel (usually opens 06:30–07:00), check out by 07:30, and drive the 20 minutes to St Anton. Drop your bags at Hotel Kirchplatz reception (rooms won't be ready yet but they'll store luggage), then walk straight to the Galzigbahn. You'll be queuing for the first gondola by 08:15.",
     wazeUrl: "https://waze.com/ul?ll=47.1297,10.2685&navigate=yes",
     wazeLabel: "Navigate to Hotel Kirchplatz, St Anton",
     walkthrough: [
-      "⏰ 06:30 — Wake up at Hotel Schrofenstein",
-      "🍳 06:45 — Quick breakfast at the hotel (usually opens 06:30-07:00)",
+      "⏰ 06:30 — Wake up at Hotel Bruggner Stub'n",
+      "🍳 06:45 — Quick breakfast at the hotel (usually opens 06:30–07:00)",
       "🧳 07:15 — Pack up, load the car",
-      "🏨 07:30 — Check out of Hotel Schrofenstein",
+      "🏨 07:30 — Check out of Hotel Bruggner Stub'n",
       "🚗 07:30 — Drive to St Anton (~20 min via S16, Arlberg Tunnel toll ~€10-18)",
       "🏨 07:50 — Arrive Hotel Kirchplatz — drop bags at reception (early bag drop, room later)",
       "🚶 08:00 — Walk to Galzigbahn gondola station (~5 min from hotel)",
@@ -656,7 +655,7 @@ const TRIP_SUMMARY = {
   costs: [
     { item: "BA outbound (3 pax)", cost: "£207.64" },
     { item: "easyJet return (3 pax)", cost: "€277 (~£235)" },
-    { item: "Hotel Schrofenstein (1 night, triple)", cost: "€246 (~£208)" },
+    { item: "Hotel Bruggner Stub'n (1 night, triple)", cost: "Booking ref: 5825157964" },
     { item: "Car hire 4 days (estimate)", cost: "~€250 (~£212)" },
     { item: "Arlberg tunnel tolls (est.)", cost: "~€60–100" },
   ]
@@ -939,9 +938,9 @@ export default function JourneyPlanner() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div style={{ background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #ffd93d" }}>
                 <div style={{ fontSize: "0.7rem", color: "#ffd93d", fontWeight: 700, marginBottom: 8 }}>NIGHT 1 — Fri 20 Mar</div>
-                <div style={{ fontWeight: 700 }}>Hotel Schrofenstein ★★★★</div>
-                <div style={{ fontSize: "0.85rem", color: "#8892a4", marginTop: 4 }}>Landeck · Triple room</div>
-                <div style={{ fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 }}>€246</div>
+                <div style={{ fontWeight: 700 }}>Hotel Bruggner Stub'n ★★★</div>
+                <div style={{ fontSize: "0.85rem", color: "#8892a4", marginTop: 4 }}>Flirstrasse 30, Landeck · Triple room</div>
+                <div style={{ fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 }}>Ref: 5825157964</div>
               </div>
               <div style={{ background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #4ecdc4" }}>
                 <div style={{ fontSize: "0.7rem", color: "#4ecdc4", fontWeight: 700, marginBottom: 8 }}>NIGHTS 2–4 — Sat 21 – Tue 24 Mar</div>
