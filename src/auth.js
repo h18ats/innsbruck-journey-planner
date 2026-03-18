@@ -1,4 +1,4 @@
-import { PublicClientApplication } from "@azure/msal-browser";
+import { PublicClientApplication, BrowserUtils } from "@azure/msal-browser";
 
 export const ALLOWED_EMAILS = [
   "andy.batty@hotmail.com",
@@ -9,6 +9,14 @@ export const ALLOWED_EMAILS = [
   "lee@legalengine.co.uk",
 ];
 
+// Clear stale interaction state BEFORE constructing MSAL
+// Prevents "interaction_in_progress" when a previous popup was closed mid-flow
+for (const key of Object.keys(localStorage)) {
+  if (key.startsWith("msal.") && key.includes("interaction")) {
+    localStorage.removeItem(key);
+  }
+}
+
 export const msalInstance = new PublicClientApplication({
   auth: {
     clientId: "12c370ba-d0eb-43e1-b156-0b94c8c0377e",
@@ -17,13 +25,5 @@ export const msalInstance = new PublicClientApplication({
   },
   cache: { cacheLocation: "localStorage", staleStateTTLInSeconds: 300 },
 });
-
-// Clear stale interaction state that causes "interaction_in_progress" errors
-// This happens when a previous login popup was closed or interrupted
-for (const key of Object.keys(localStorage)) {
-  if (key.startsWith("msal.") && key.includes("interaction")) {
-    localStorage.removeItem(key);
-  }
-}
 
 export const msalReady = msalInstance.initialize();
