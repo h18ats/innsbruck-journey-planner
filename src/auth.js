@@ -9,27 +9,29 @@ export const ALLOWED_EMAILS = [
   "lee@legalengine.co.uk",
 ];
 
-// Clear stale MSAL interaction state from BOTH storages before constructing
-// MSAL v3+ uses sessionStorage for interaction tracking, v2 used localStorage
-function clearStaleInteraction() {
-  for (const storage of [localStorage, sessionStorage]) {
-    for (const key of Object.keys(storage)) {
-      if (key.startsWith("msal.") && key.includes("interaction")) {
-        storage.removeItem(key);
-      }
-    }
-  }
-}
-clearStaleInteraction();
+export const loginRequest = {
+  scopes: ["openid", "profile", "email"],
+};
 
 export const msalInstance = new PublicClientApplication({
   auth: {
     clientId: "12c370ba-d0eb-43e1-b156-0b94c8c0377e",
-    authority: "https://login.microsoftonline.com/common",
+    authority: "https://login.microsoftonline.com/consumers",
     redirectUri: window.location.origin + "/",
   },
-  cache: { cacheLocation: "localStorage", staleStateTTLInSeconds: 300 },
+  cache: {
+    cacheLocation: "localStorage",
+    staleStateTTLInSeconds: 300,
+  },
 });
 
-export { clearStaleInteraction };
-export const msalReady = msalInstance.initialize();
+export const msalInitPromise = msalInstance.initialize();
+
+/**
+ * Nuclear auth reset — clear all MSAL state from both storages and reload.
+ */
+export function nukeAuthAndReload() {
+  Object.keys(localStorage).filter(k => k.startsWith("msal.") || k.startsWith("login.")).forEach(k => localStorage.removeItem(k));
+  Object.keys(sessionStorage).filter(k => k.startsWith("msal.")).forEach(k => sessionStorage.removeItem(k));
+  window.location.replace(window.location.origin + "/");
+}

@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { ALLOWED_EMAILS, msalInstance, msalReady, clearStaleInteraction } from "./auth.js";
+import { ALLOWED_EMAILS, msalInstance, msalInitPromise, loginRequest, nukeAuthAndReload } from "./auth.js";
 import { STAGES } from "./data/stages.js";
 import { RESTAURANTS, TRIP_SUMMARY } from "./data/restaurants.js";
 
 export function App() {
   const [authState, setAuthState] = useState("loading"); // loading | login | denied | app
   const [authError, setAuthError] = useState("");
+  const [loginBusy, setLoginBusy] = useState(false);
   const [activeStage, setActiveStage] = useState(0);
   const [view, setView] = useState("journey");
   const [animKey, setAnimKey] = useState(0);
 
   useEffect(() => {
-    msalReady.then(() => {
-      msalInstance.handleRedirectPromise().then((resp) => {
+    const init = async () => {
+      try {
+        // Timeout prevents MSAL init hanging forever (known issue with stale localStorage)
+        const resp = await Promise.race([
+          msalInitPromise.then(() => msalInstance.handleRedirectPromise()),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("MSAL init timeout")), 3000)),
+        ]);
+
         const accounts = msalInstance.getAllAccounts();
         if (resp && resp.account) {
           const email = (resp.account.username || "").toLowerCase();
@@ -25,31 +32,56 @@ export function App() {
         } else {
           setAuthState("login");
         }
-      }).catch(() => setAuthState("login"));
-    });
+      } catch (err) {
+        console.error("MSAL init error:", err);
+        setAuthState("login");
+      }
+    };
+    init();
   }, []);
 
-  const handleLogin = () => {
-    const req = { scopes: ["openid", "profile", "email"] };
-    msalInstance.loginRedirect(req).catch((err) => {
-      if (err && err.errorCode === "interaction_in_progress") {
-        clearStaleInteraction();
-        window.location.reload();
-      } else {
-        setAuthError(err.message || "Login failed. Try again.");
+  const handleLogin = async () => {
+    setLoginBusy(true);
+    setAuthError("");
+    try {
+      await msalInitPromise;
+      await msalInstance.loginPopup(loginRequest);
+      // Re-check accounts after popup returns
+      const accounts = msalInstance.getAllAccounts();
+      if (accounts.length > 0) {
+        const email = (accounts[0].username || "").toLowerCase();
+        if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
+        else { setAuthError(email); setAuthState("denied"); }
       }
-    });
+    } catch (e) {
+      console.error("Login error:", e?.errorCode, e?.message);
+      if (e?.errorCode === "user_cancelled") { setLoginBusy(false); return; }
+      // Popup blocked — fall back to redirect
+      if (e?.errorCode === "popup_window_error" || e?.errorCode === "empty_window_error") {
+        try { await msalInstance.loginRedirect(loginRequest); return; } catch {}
+      }
+      // Stale interaction — nuke and reload
+      if (e?.errorCode === "interaction_in_progress") {
+        nukeAuthAndReload();
+        return;
+      }
+      setAuthError(e?.message || "Sign-in failed. Please try again.");
+      setLoginBusy(false);
+    }
   };
 
-  const handleLogout = () => {
-    msalInstance.logoutPopup().then(() => {
+  const handleLogout = async () => {
+    try {
+      await msalInitPromise;
+      await msalInstance.logoutPopup();
       setAuthState("login");
       setAuthError("");
-    }).catch((err) => {
-      if (err && err.errorCode !== "user_cancelled") {
-        setAuthError(err.message || "Logout failed. Clear browser data and try again.");
+    } catch (err) {
+      if (err?.errorCode !== "user_cancelled") {
+        // Logout popup blocked — nuke state manually
+        nukeAuthAndReload();
       }
-    });
+    }
   };
 
   if (authState === "loading") {
@@ -68,7 +100,7 @@ export function App() {
         React.createElement("h1", { style: { fontSize: "1.3rem", fontWeight: 700, marginBottom: 4 } }, "Innsbruck Ski Trip"),
         React.createElement("p", { style: { color: "#6b7588", fontSize: "0.85rem", marginBottom: 24 } }, "Sign in with your Microsoft account to view the trip planner"),
         authError ? React.createElement("p", { style: { color: "#ff6b6b", fontSize: "0.8rem", marginBottom: 16 } }, authError) : null,
-        React.createElement("button", { onClick: handleLogin, style: { width: "100%", padding: "12px 24px", borderRadius: 10, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.15)", color: "#4ecdc4", cursor: "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit" } }, "Sign in with Microsoft")
+        React.createElement("button", { onClick: handleLogin, disabled: loginBusy, style: { width: "100%", padding: "12px 24px", borderRadius: 10, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.15)", color: "#4ecdc4", cursor: loginBusy ? "wait" : "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit", opacity: loginBusy ? 0.6 : 1 } }, loginBusy ? "Signing in..." : "Sign in with Microsoft")
       )
     );
   }

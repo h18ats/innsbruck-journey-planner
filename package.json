@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/h18ats/innsbruck-journey-planner#readme",
   "dependencies": {
-    "@azure/msal-browser": "^5.5.0",
+    "@azure/msal-browser": "^3.30.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
