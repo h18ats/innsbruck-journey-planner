@@ -30,24 +30,15 @@ export function App() {
   }, []);
 
   const handleLogin = () => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const req = { scopes: ["openid", "profile", "email"] };
-    if (isIOS) { msalInstance.loginRedirect(req); }
-    else {
-      msalInstance.loginPopup(req).then((resp) => {
-        const email = (resp.account.username || "").toLowerCase();
-        if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
-        else { setAuthError(email); setAuthState("denied"); }
-      }).catch((err) => {
-        if (err && err.errorCode === "interaction_in_progress") {
-          clearStaleInteraction();
-          window.location.reload();
-          return;
-        } else if (err && err.errorCode !== "user_cancelled") {
-          setAuthError(err.message || "Login failed. Try again.");
-        }
-      });
-    }
+    msalInstance.loginRedirect(req).catch((err) => {
+      if (err && err.errorCode === "interaction_in_progress") {
+        clearStaleInteraction();
+        window.location.reload();
+      } else {
+        setAuthError(err.message || "Login failed. Try again.");
+      }
+    });
   };
 
   const handleLogout = () => {
