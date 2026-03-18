@@ -752,7 +752,11 @@ function JourneyPlanner() {
         const email = (resp.account.username || "").toLowerCase();
         if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
         else { setAuthError(email); setAuthState("denied"); }
-      }).catch(() => {});
+      }).catch((err) => {
+        if (err && err.errorCode !== "user_cancelled") {
+          setAuthError(err.message || "Login failed. Try again.");
+        }
+      });
     }
   };
 
@@ -775,6 +779,7 @@ function JourneyPlanner() {
         React.createElement("div", { style: { fontSize: "3rem", marginBottom: 16 } }, "⛷️"),
         React.createElement("h1", { style: { fontSize: "1.3rem", fontWeight: 700, marginBottom: 4 } }, "Innsbruck Ski Trip"),
         React.createElement("p", { style: { color: "#6b7588", fontSize: "0.85rem", marginBottom: 24 } }, "Sign in with your Microsoft account to view the trip planner"),
+        authError ? React.createElement("p", { style: { color: "#ff6b6b", fontSize: "0.8rem", marginBottom: 16 } }, authError) : null,
         React.createElement("button", { onClick: handleLogin, style: { width: "100%", padding: "12px 24px", borderRadius: 10, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.15)", color: "#4ecdc4", cursor: "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit" } }, "Sign in with Microsoft")
       )
     );
@@ -827,7 +832,7 @@ function JourneyPlanner() {
           ),
           React.createElement("div", { style: { fontSize: "0.75rem", color: "#6b7588", marginTop: 2 } }, "Andrew Batty · James Herbert · Lee Curtis")
         ),
-        React.createElement("div", { style: { display: "flex", gap: 8 } },
+        React.createElement("div", { style: { display: "flex", gap: 8, alignItems: "center" } },
           ["journey", "restaurants", "summary"].map(v => {
             const labels = { journey: "🗺 Journey", restaurants: "🍽 Eat & Drink", summary: "📋 Trip Summary" };
             const colors = { journey: "#4ecdc4", restaurants: "#ff6b6b", summary: "#a78bfa" };
@@ -835,7 +840,11 @@ function JourneyPlanner() {
               key: v, onClick: () => setView(v),
               style: { padding: "8px 16px", borderRadius: 8, border: view === v ? `1px solid ${colors[v]}` : "1px solid #252b38", background: view === v ? `${colors[v]}18` : "#14181f", color: view === v ? colors[v] : "#8892a4", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 }
             }, labels[v]);
-          })
+          }),
+          React.createElement("button", {
+            onClick: handleLogout,
+            style: { padding: "8px 12px", borderRadius: 8, border: "1px solid #252b38", background: "#14181f", color: "#8892a4", cursor: "pointer", fontSize: "0.75rem", fontWeight: 500, marginLeft: 8 }
+          }, "Log out")
         )
       ),
       view === "journey" ?
