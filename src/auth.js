@@ -18,4 +18,12 @@ export const msalInstance = new PublicClientApplication({
   cache: { cacheLocation: "localStorage", staleStateTTLInSeconds: 300 },
 });
 
+// Clear stale interaction state that causes "interaction_in_progress" errors
+// This happens when a previous login popup was closed or interrupted
+for (const key of Object.keys(localStorage)) {
+  if (key.startsWith("msal.") && key.includes("interaction")) {
+    localStorage.removeItem(key);
+  }
+}
+
 export const msalReady = msalInstance.initialize();
