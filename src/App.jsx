@@ -41,7 +41,8 @@ export function App() {
       }).catch((err) => {
         if (err && err.errorCode === "interaction_in_progress") {
           clearStaleInteraction();
-          setAuthError("Cleared stale session. Click Sign in again.");
+          window.location.reload();
+          return;
         } else if (err && err.errorCode !== "user_cancelled") {
           setAuthError(err.message || "Login failed. Try again.");
         }
