@@ -106,13 +106,34 @@ export function App() {
   }
 
   if (authState === "denied") {
+    const handleSwitchAccount = async () => {
+      try {
+        await msalInitPromise;
+        // Prompt: select_account forces Microsoft to show the account picker
+        await msalInstance.loginPopup({ ...loginRequest, prompt: "select_account" });
+        const accounts = msalInstance.getAllAccounts();
+        if (accounts.length > 0) {
+          const email = (accounts[0].username || "").toLowerCase();
+          if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); setAuthError(""); }
+          else { setAuthError(email); }
+        }
+      } catch (e) {
+        if (e?.errorCode === "user_cancelled") return;
+        if (e?.errorCode === "popup_window_error" || e?.errorCode === "empty_window_error") {
+          try { await msalInstance.loginRedirect({ ...loginRequest, prompt: "select_account" }); return; } catch {}
+        }
+        if (e?.errorCode === "interaction_in_progress") { nukeAuthAndReload(); return; }
+      }
+    };
     return React.createElement("div", { style: { fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif", background: "#0a0d12", color: "#e4e8f0", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" } },
       React.createElement("div", { style: { background: "#14181f", border: "1px solid #1e2433", borderRadius: 16, padding: "2.5rem", width: 360, textAlign: "center" } },
         React.createElement("div", { style: { fontSize: "3rem", marginBottom: 16 } }, "\uD83D\uDEAB"),
         React.createElement("h1", { style: { fontSize: "1.3rem", fontWeight: 700, marginBottom: 4 } }, "Access Denied"),
-        React.createElement("p", { style: { color: "#6b7588", fontSize: "0.85rem", marginBottom: 8 } }, "This trip planner is private."),
-        React.createElement("p", { style: { color: "#ff6b6b", fontSize: "0.8rem", marginBottom: 24 } }, authError ? `Signed in as ${authError}` : ""),
-        React.createElement("button", { onClick: handleLogout, style: { width: "100%", padding: "12px 24px", borderRadius: 10, border: "1px solid #6c9bff", background: "rgba(108,155,255,0.1)", color: "#6c9bff", cursor: "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit" } }, "Sign in with a different account")
+        React.createElement("p", { style: { color: "#6b7588", fontSize: "0.85rem", marginBottom: 8 } }, "This trip planner is private. Try a different Microsoft account."),
+        React.createElement("p", { style: { color: "#ff6b6b", fontSize: "0.8rem", marginBottom: 16 } }, authError ? `Signed in as ${authError}` : ""),
+        React.createElement("p", { style: { color: "#4ecdc4", fontSize: "0.75rem", marginBottom: 24, lineHeight: 1.5 } }, "Allowed: hotmail, outlook, or gmail accounts for Andy, Jim, and Lee"),
+        React.createElement("button", { onClick: handleSwitchAccount, style: { width: "100%", padding: "12px 24px", borderRadius: 10, border: "1px solid #6c9bff", background: "rgba(108,155,255,0.1)", color: "#6c9bff", cursor: "pointer", fontSize: "0.95rem", fontWeight: 600, fontFamily: "inherit", marginBottom: 10 } }, "Try a different account"),
+        React.createElement("button", { onClick: nukeAuthAndReload, style: { width: "100%", padding: "10px 24px", borderRadius: 10, border: "1px solid #252b38", background: "transparent", color: "#6b7588", cursor: "pointer", fontSize: "0.8rem", fontWeight: 500, fontFamily: "inherit" } }, "Reset & start over")
       )
     );
   }
