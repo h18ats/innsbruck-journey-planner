@@ -1,4 +1,4 @@
-import { PublicClientApplication, BrowserUtils } from "@azure/msal-browser";
+import { PublicClientApplication } from "@azure/msal-browser";
 
 export const ALLOWED_EMAILS = [
   "andy.batty@hotmail.com",
@@ -9,13 +9,18 @@ export const ALLOWED_EMAILS = [
   "lee@legalengine.co.uk",
 ];
 
-// Clear stale interaction state BEFORE constructing MSAL
-// Prevents "interaction_in_progress" when a previous popup was closed mid-flow
-for (const key of Object.keys(localStorage)) {
-  if (key.startsWith("msal.") && key.includes("interaction")) {
-    localStorage.removeItem(key);
+// Clear stale MSAL interaction state from BOTH storages before constructing
+// MSAL v3+ uses sessionStorage for interaction tracking, v2 used localStorage
+function clearStaleInteraction() {
+  for (const storage of [localStorage, sessionStorage]) {
+    for (const key of Object.keys(storage)) {
+      if (key.startsWith("msal.") && key.includes("interaction")) {
+        storage.removeItem(key);
+      }
+    }
   }
 }
+clearStaleInteraction();
 
 export const msalInstance = new PublicClientApplication({
   auth: {
@@ -26,4 +31,5 @@ export const msalInstance = new PublicClientApplication({
   cache: { cacheLocation: "localStorage", staleStateTTLInSeconds: 300 },
 });
 
+export { clearStaleInteraction };
 export const msalReady = msalInstance.initialize();

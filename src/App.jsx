@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ALLOWED_EMAILS, msalInstance, msalReady } from "./auth.js";
+import { ALLOWED_EMAILS, msalInstance, msalReady, clearStaleInteraction } from "./auth.js";
 import { STAGES } from "./data/stages.js";
 import { RESTAURANTS, TRIP_SUMMARY } from "./data/restaurants.js";
 
@@ -39,7 +39,10 @@ export function App() {
         if (ALLOWED_EMAILS.includes(email)) { setAuthState("app"); }
         else { setAuthError(email); setAuthState("denied"); }
       }).catch((err) => {
-        if (err && err.errorCode !== "user_cancelled") {
+        if (err && err.errorCode === "interaction_in_progress") {
+          clearStaleInteraction();
+          setAuthError("Cleared stale session. Click Sign in again.");
+        } else if (err && err.errorCode !== "user_cancelled") {
           setAuthError(err.message || "Login failed. Try again.");
         }
       });
