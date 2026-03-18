@@ -31,7 +31,11 @@ export const msalInitPromise = msalInstance.initialize();
  * Nuclear auth reset — clear all MSAL state from both storages and reload.
  */
 export function nukeAuthAndReload() {
-  Object.keys(localStorage).filter(k => k.startsWith("msal.") || k.startsWith("login.")).forEach(k => localStorage.removeItem(k));
-  Object.keys(sessionStorage).filter(k => k.startsWith("msal.")).forEach(k => sessionStorage.removeItem(k));
+  // Clear ALL MSAL-related keys — accounts, tokens, interaction state
+  const msalPattern = /^msal\.|^login\.|12c370ba/;
+  Object.keys(localStorage).filter(k => msalPattern.test(k)).forEach(k => localStorage.removeItem(k));
+  Object.keys(sessionStorage).filter(k => msalPattern.test(k)).forEach(k => sessionStorage.removeItem(k));
+  // Also try MSAL's own clear if instance is available
+  try { msalInstance.clearCache(); } catch {}
   window.location.replace(window.location.origin + "/");
 }
