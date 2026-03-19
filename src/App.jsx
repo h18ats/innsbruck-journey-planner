@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { ALLOWED_EMAILS, msalInstance, msalInitPromise, loginRequest, nukeAuthAndReload } from "./auth.js";
 import { STAGES } from "./data/stages.js";
 import { RESTAURANTS, TRIP_SUMMARY } from "./data/restaurants.js";
 import { SKI_ROUTES, MOUNTAIN_STOPS, SPRING_TIPS } from "./data/skiroutes.js";
+
+const Mountain3D = lazy(() => import("./components/Mountain3D.jsx"));
 
 export function App() {
   const [authState, setAuthState] = useState("loading"); // loading | login | denied | app
@@ -281,6 +283,9 @@ export function App() {
         )
       : view === "skiroutes" ?
         React.createElement("div", { style: { maxWidth: 900, margin: "0 auto", padding: "2rem" } },
+          React.createElement(Suspense, { fallback: React.createElement("div", { style: { width: "100%", height: 450, borderRadius: 16, background: "#14181f", display: "flex", alignItems: "center", justifyContent: "center", color: "#8892a4", marginBottom: "1.5rem", border: "1px solid #1e2433" } }, "Loading 3D terrain...") },
+            React.createElement(Mountain3D, { selectedRoute: null })
+          ),
           React.createElement("div", { style: { textAlign: "center", marginBottom: "2.5rem" } },
             React.createElement("h2", { style: { fontSize: "2rem", fontWeight: 700, marginBottom: 8 } }, "\uD83C\uDFC2 Ski Routes from Nassereinbahn"),
             React.createElement("p", { style: { color: "#8892a4", fontSize: "1rem" } }, "Expert snowboard routes \u2014 mostly reds with off-piste options \u2014 starting from Gampen (1,850m)")
