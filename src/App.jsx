@@ -182,9 +182,10 @@ export function App() {
               style: { padding: "8px 16px", borderRadius: 8, border: view === v ? `1px solid ${colors[v]}` : "1px solid #252b38", background: view === v ? `${colors[v]}18` : "#14181f", color: view === v ? colors[v] : "#8892a4", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 }
             }, labels[v]);
           }),
+          React.createElement("span", { style: { fontSize: "0.6rem", color: "#3a4050", fontFamily: "monospace", marginLeft: 8 } }, `v${__APP_VERSION__}`),
           React.createElement("button", {
             onClick: handleLogout,
-            style: { padding: "8px 12px", borderRadius: 8, border: "1px solid #252b38", background: "#14181f", color: "#8892a4", cursor: "pointer", fontSize: "0.75rem", fontWeight: 500, marginLeft: 8 }
+            style: { padding: "8px 12px", borderRadius: 8, border: "1px solid #252b38", background: "#14181f", color: "#8892a4", cursor: "pointer", fontSize: "0.75rem", fontWeight: 500, marginLeft: 4 }
           }, "Log out")
         )
       ),
