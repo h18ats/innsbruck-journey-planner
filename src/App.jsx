@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ALLOWED_EMAILS, msalInstance, msalInitPromise, loginRequest, nukeAuthAndReload } from "./auth.js";
 import { STAGES } from "./data/stages.js";
 import { RESTAURANTS, TRIP_SUMMARY } from "./data/restaurants.js";
+import { SKI_ROUTES, MOUNTAIN_STOPS, SPRING_TIPS } from "./data/skiroutes.js";
 
 export function App() {
   const [authState, setAuthState] = useState("loading"); // loading | login | denied | app
@@ -176,9 +177,9 @@ export function App() {
           React.createElement("div", { style: { fontSize: "0.75rem", color: "#6b7588", marginTop: 2 } }, "Andrew Batty \u00B7 James Herbert \u00B7 Lee Curtis")
         ),
         React.createElement("div", { style: { display: "flex", gap: 8, alignItems: "center" } },
-          ["journey", "restaurants", "summary"].map(v => {
-            const labels = { journey: "\uD83D\uDDFA Journey", restaurants: "\uD83C\uDF7D Eat & Drink", summary: "\uD83D\uDCCB Trip Summary" };
-            const colors = { journey: "#4ecdc4", restaurants: "#ff6b6b", summary: "#a78bfa" };
+          ["journey", "skiroutes", "restaurants", "summary"].map(v => {
+            const labels = { journey: "\uD83D\uDDFA Journey", skiroutes: "\uD83C\uDFC2 Ski Routes", restaurants: "\uD83C\uDF7D Eat & Drink", summary: "\uD83D\uDCCB Summary" };
+            const colors = { journey: "#4ecdc4", skiroutes: "#ffd93d", restaurants: "#ff6b6b", summary: "#a78bfa" };
             return React.createElement("button", {
               key: v, onClick: () => setView(v),
               style: { padding: "8px 16px", borderRadius: 8, border: view === v ? `1px solid ${colors[v]}` : "1px solid #252b38", background: view === v ? `${colors[v]}18` : "#14181f", color: view === v ? colors[v] : "#8892a4", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 }
@@ -277,6 +278,89 @@ export function App() {
               activeStage === STAGES.length - 1 && React.createElement("button", { onClick: () => setView("restaurants"), style: { width: "100%", marginTop: 16, padding: "16px 24px", borderRadius: 14, border: "1px solid #ff6b6b", background: "rgba(255,107,107,0.1)", color: "#ff6b6b", cursor: "pointer", fontSize: "1rem", fontWeight: 700, fontFamily: "inherit" } }, "\uD83C\uDF7D Where should we eat and drink in St Anton? \u2192")
             )
           )
+        )
+      : view === "skiroutes" ?
+        React.createElement("div", { style: { maxWidth: 900, margin: "0 auto", padding: "2rem" } },
+          React.createElement("div", { style: { textAlign: "center", marginBottom: "2.5rem" } },
+            React.createElement("h2", { style: { fontSize: "2rem", fontWeight: 700, marginBottom: 8 } }, "\uD83C\uDFC2 Ski Routes from Nassereinbahn"),
+            React.createElement("p", { style: { color: "#8892a4", fontSize: "1rem" } }, "Expert snowboard routes \u2014 mostly reds with off-piste options \u2014 starting from Gampen (1,850m)")
+          ),
+          React.createElement("div", { style: { display: "flex", gap: 8, justifyContent: "center", marginBottom: "2rem", flexWrap: "wrap" } },
+            React.createElement("button", { onClick: () => { document.getElementById("routes-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #ffd93d", background: "rgba(255,217,61,0.1)", color: "#ffd93d", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\uD83D\uDDFA Routes"),
+            React.createElement("button", { onClick: () => { document.getElementById("premium-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #a78bfa", background: "rgba(167,139,250,0.1)", color: "#a78bfa", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\u2B50 Premium Stops"),
+            React.createElement("button", { onClick: () => { document.getElementById("value-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.1)", color: "#4ecdc4", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\uD83D\uDCB0 Value Stops"),
+            React.createElement("button", { onClick: () => { document.getElementById("tips-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #ff6b6b", background: "rgba(255,107,107,0.1)", color: "#ff6b6b", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\u2744\uFE0F Spring Tips")
+          ),
+          React.createElement("div", { id: "routes-section" },
+            SKI_ROUTES.map((route, i) =>
+              React.createElement("div", { key: i, style: { background: "#14181f", border: "1px solid #1e2433", borderRadius: 16, padding: "1.75rem", marginBottom: 16, borderTop: "3px solid #ffd93d" } },
+                React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16, flexWrap: "wrap", marginBottom: 12 } },
+                  React.createElement("div", null,
+                    React.createElement("h3", { style: { fontSize: "1.3rem", fontWeight: 700, margin: "0 0 4px" } }, route.name),
+                    React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4" } }, route.difficulty + " \u00B7 " + route.vertical)
+                  ),
+                  React.createElement("div", { style: { textAlign: "right" } },
+                    React.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 700, color: "#ffd93d" } }, route.duration)
+                  )
+                ),
+                React.createElement("p", { style: { color: "#a0a8b8", fontSize: "0.92rem", lineHeight: 1.7, marginBottom: 16 } }, route.description),
+                React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 } },
+                  route.steps.map((step, j) =>
+                    React.createElement("div", { key: j, style: { display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", background: "#0e1118", borderRadius: 8, borderLeft: step.type === "lift" ? "3px solid #6c9bff" : step.grade === "black" ? "3px solid #1a1a2e" : step.grade === "red" ? "3px solid #ff6b6b" : "3px solid #4ecdc4" } },
+                      React.createElement("span", { style: { fontSize: "0.85rem" } }, step.type === "lift" ? "\uD83D\uDEA1" : step.grade === "black" ? "\u25C6" : step.grade === "red" ? "\uD83D\uDD34" : "\uD83D\uDD35"),
+                      React.createElement("span", { style: { fontSize: "0.85rem", color: "#c0c8d8" } }, step.text)
+                    )
+                  )
+                ),
+                React.createElement("div", { style: { background: "rgba(255,217,61,0.08)", border: "1px solid rgba(255,217,61,0.2)", borderRadius: 10, padding: "10px 14px", fontSize: "0.85rem", color: "#ffd93d" } }, "\uD83D\uDCA1 ", route.tip)
+              )
+            )
+          ),
+          React.createElement("div", { id: "premium-section", style: { marginTop: 32 } },
+            React.createElement("h2", { style: { fontSize: "1.5rem", fontWeight: 700, marginBottom: 16 } }, "\u2B50 Premium Mountain Stops"),
+            React.createElement("p", { style: { color: "#8892a4", fontSize: "0.9rem", marginBottom: 20 } }, "Gourmet dining and iconic Arlberg experiences"),
+            MOUNTAIN_STOPS.premium.map((stop, i) =>
+              React.createElement("div", { key: i, style: { background: "#14181f", border: "1px solid #1e2433", borderRadius: 16, padding: "1.5rem", marginBottom: 14, borderLeft: `3px solid ${stop.color}` } },
+                React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 } },
+                  React.createElement("div", null,
+                    React.createElement("h3", { style: { fontSize: "1.1rem", fontWeight: 700, margin: "0 0 2px" } }, stop.name),
+                    React.createElement("div", { style: { fontSize: "0.8rem", color: "#8892a4" } }, stop.altitude + " \u00B7 " + stop.location)
+                  ),
+                  React.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 700, color: "#ffd93d" } }, stop.price)
+                ),
+                React.createElement("div", { style: { display: "inline-block", padding: "3px 10px", borderRadius: 20, fontSize: "0.7rem", fontWeight: 700, background: stop.timing === "coffee" ? "rgba(78,205,196,0.1)" : "rgba(167,139,250,0.1)", border: stop.timing === "coffee" ? "1px solid rgba(78,205,196,0.3)" : "1px solid rgba(167,139,250,0.3)", color: stop.timing === "coffee" ? "#4ecdc4" : "#a78bfa", marginBottom: 10 } }, stop.bestFor),
+                React.createElement("p", { style: { color: "#a0a8b8", fontSize: "0.88rem", lineHeight: 1.6, marginBottom: 10 } }, stop.description),
+                React.createElement("div", { style: { fontSize: "0.82rem", color: "#6b7588" } }, "\uD83D\uDCA1 " + stop.tip)
+              )
+            )
+          ),
+          React.createElement("div", { id: "value-section", style: { marginTop: 32 } },
+            React.createElement("h2", { style: { fontSize: "1.5rem", fontWeight: 700, marginBottom: 16 } }, "\uD83D\uDCB0 Value Mountain Stops"),
+            React.createElement("p", { style: { color: "#8892a4", fontSize: "0.9rem", marginBottom: 20 } }, "Authentic Tyrolean huts \u2014 great food, better prices"),
+            MOUNTAIN_STOPS.value.map((stop, i) =>
+              React.createElement("div", { key: i, style: { background: "#14181f", border: "1px solid #1e2433", borderRadius: 16, padding: "1.5rem", marginBottom: 14, borderLeft: `3px solid ${stop.color}` } },
+                React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 } },
+                  React.createElement("div", null,
+                    React.createElement("h3", { style: { fontSize: "1.1rem", fontWeight: 700, margin: "0 0 2px" } }, stop.name),
+                    React.createElement("div", { style: { fontSize: "0.8rem", color: "#8892a4" } }, stop.altitude + " \u00B7 " + stop.location)
+                  ),
+                  React.createElement("div", { style: { fontSize: "0.85rem", fontWeight: 700, color: "#4ecdc4" } }, stop.price)
+                ),
+                React.createElement("div", { style: { display: "inline-block", padding: "3px 10px", borderRadius: 20, fontSize: "0.7rem", fontWeight: 700, background: stop.timing === "coffee" ? "rgba(78,205,196,0.1)" : "rgba(167,139,250,0.1)", border: stop.timing === "coffee" ? "1px solid rgba(78,205,196,0.3)" : "1px solid rgba(167,139,250,0.3)", color: stop.timing === "coffee" ? "#4ecdc4" : "#a78bfa", marginBottom: 10 } }, stop.bestFor),
+                React.createElement("p", { style: { color: "#a0a8b8", fontSize: "0.88rem", lineHeight: 1.6, marginBottom: 10 } }, stop.description),
+                React.createElement("div", { style: { fontSize: "0.82rem", color: "#6b7588" } }, "\uD83D\uDCA1 " + stop.tip)
+              )
+            )
+          ),
+          React.createElement("div", { id: "tips-section", style: { marginTop: 32, background: "linear-gradient(135deg, rgba(78,205,196,0.08), rgba(108,155,255,0.08))", border: "1px solid rgba(78,205,196,0.2)", borderRadius: 14, padding: "1.5rem" } },
+            React.createElement("h2", { style: { fontSize: "1.3rem", fontWeight: 700, marginBottom: 16 } }, "\u2744\uFE0F Late March / Spring Snow Tips"),
+            React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 8 } },
+              SPRING_TIPS.map((tip, i) =>
+                React.createElement("div", { key: i, style: { fontSize: "0.88rem", color: "#c0c8d8", padding: "6px 0", borderBottom: i < SPRING_TIPS.length - 1 ? "1px solid rgba(78,205,196,0.1)" : "none" } }, tip)
+              )
+            )
+          ),
+          React.createElement("button", { onClick: () => setView("restaurants"), style: { width: "100%", marginTop: 24, padding: "14px 24px", borderRadius: 12, border: "1px solid #ff6b6b", background: "rgba(255,107,107,0.1)", color: "#ff6b6b", cursor: "pointer", fontSize: "0.9rem", fontWeight: 600, fontFamily: "inherit" } }, "\uD83C\uDF7D See Village Restaurants \u2192")
         )
       : view === "restaurants" ?
         React.createElement("div", { style: { maxWidth: 900, margin: "0 auto", padding: "2rem" } },
