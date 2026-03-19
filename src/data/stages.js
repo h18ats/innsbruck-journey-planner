@@ -60,14 +60,14 @@ export const STAGES = [
     tagColor: "#6c9bff",
     tag: "AIRPORT",
     weather: { temp: "7\u00B0C", condition: "Clear", icon: "\uD83C\uDF05", wind: "10 km/h W", humidity: "78%" },
-    description: "British Airways operates from the South Terminal at Gatwick. Head to Zone A for BA check-in. Andrew has Economy Plus (includes seat selection + checked bag). James & Lee have Economy Basic \u2014 no checked bags or seat selection included, those are extra.",
+    description: "British Airways operates from the South Terminal at Gatwick. Head to Zone A for BA check-in. Andy has Gold status \u2014 Fast Track security, priority boarding (Group 1). Jim & Lee are Economy (Group 5). All checked in, boarding passes ready.",
     walkthrough: [
       "\uD83D\uDEAA Enter South Terminal departures on Level 1",
       "\uD83D\uDCCB BA check-in is in Zone A \u2014 short walk from the entrance",
-      "\uD83C\uDF92 Andrew: Economy Plus \u2014 checked bag included, use Auto Bag Drop",
-      "\u26A0\uFE0F James & Lee: Economy Basic \u2014 NO checked bag or seat selection included",
-      "\uD83D\uDCB0 Add checked bags at check-in if needed (~\u00A340-50 per bag)",
-      "\uD83D\uDCF1 Download BA app for mobile boarding passes"
+      "\uD83C\uDF92 Andy: Gold/Fast Track \u2014 checked bag included, Auto Bag Drop (ref Y47QQ8)",
+      "\uD83C\uDF92 Jim & Lee: Economy \u2014 ref Y45BSE",
+      "\u26A1 Andy: use FAST TRACK security lane (Gold status)",
+      "\uD83D\uDCF1 Boarding passes in email \u2014 save to phone or print"
     ],
     image: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=800&q=80",
     imageAlt: "Airport terminal departure hall"
@@ -107,15 +107,17 @@ export const STAGES = [
     tagColor: "#ff6b6b",
     tag: "BOARDING",
     weather: { temp: "7\u00B0C", condition: "Clear", icon: "\uD83C\uDF05", wind: "10 km/h W", humidity: "78%" },
-    description: "Board British Airways BA2620, operated by BA Euroflyer. Direct flight to Innsbruck \u2014 just 2 hours. Andrew is in Economy Plus (priority boarding, extra legroom). James and Lee are in Economy Basic.",
+    description: "Board British Airways BA2620, operated by BA Euroflyer. Direct flight to Innsbruck \u2014 just 2 hours. All three in row 18. Andy has Gold/Fast Track (Group 1, boards first). Jim and Lee board with Group 5.",
     walkthrough: [
       "\u2708\uFE0F Flight: BA2620 (operated by BA Euroflyer)",
-      "\u23F0 Scheduled departure: 7:45 AM GMT",
+      "\u23F0 Boarding time: 07:05 \u2014 Departure: 07:45 GMT",
       "\uD83D\uDEEC Arrives Innsbruck: 10:45 AM CET (local time, +1hr)",
-      "\uD83C\uDFAB Andrew: Economy Plus \u2014 priority boarding, better seat",
-      "\uD83C\uDFAB James & Lee: Economy Basic \u2014 board with main cabin",
+      "\uD83D\uDCBA Row 18 \u2014 all three together:",
+      "   \u2192 Andy: 18F (window) \u2014 Group 1, Fast Track, Gold (ref Y47QQ8)",
+      "   \u2192 Lee: 18E (middle) \u2014 Group 5 (ref Y45BSE)",
+      "   \u2192 Jim: 18D (aisle) \u2014 Group 5 (ref Y45BSE)",
       "\u23F1\uFE0F Flight duration: 2 hours, nonstop",
-      "\uD83D\uDCA1 Tip: Sit on the RIGHT side for mountain views on approach to Innsbruck"
+      "\uD83D\uDCA1 Right side of aircraft (row 18 D-E-F) \u2014 mountain views on approach!"
     ],
     image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800&q=80",
     imageAlt: "British Airways aircraft"
@@ -462,17 +464,18 @@ export const STAGES = [
     tagColor: "#6c9bff",
     tag: "AIRPORT",
     weather: { temp: "8\u00B0C", condition: "Partly Cloudy", icon: "\u26C5", wind: "10 km/h", humidity: "65%" },
-    description: "Return the Kia Stonic to the Enterprise desk in the Arrivals Hall (same place you picked it up). Car return deadline is 18:00 \u2014 you'll be well ahead of that. Enterprise closes 18:30 Tue. Then check in for easyJet EZY8696.",
+    description: "Return the Kia Stonic to the Enterprise desk in the Arrivals Hall (same place you picked it up). Car return deadline is 18:00. Then bag drop for easyJet \u2014 opens 16:55, closes 18:15. Already checked in, boarding passes ready.",
     walkthrough: [
-      "\uD83D\uDE97 Return car to Enterprise in the Arrivals Hall",
+      "\uD83D\uDE97 17:15 \u2014 Return car to Enterprise in the Arrivals Hall",
       "\uD83D\uDCCB Ref: DYS-201495906 \u2014 return by 18:00 (Enterprise closes 18:30)",
       "\u26FD FULL TANK \u2014 or \u20AC18 refueling charge + cost of missing fuel",
       "\uD83D\uDCCB Return keys, check for any damage charges",
       "\uD83D\uDEB6 Walk covered walkway back to terminal (~3 min)",
-      "\uD83D\uDCF1 easyJet check-in: should already be done online (ref: KBXZJFX)",
-      "\uD83E\uDDF3 Bag drop: 3x 23kg hold bags included in your booking",
+      "\uD83E\uDDF3 17:30 \u2014 Bag drop (3x 23kg hold bags) \u2014 opens 16:55, closes 18:15",
+      "\uD83D\uDCF1 Boarding passes: already checked in (ref KBXZJFX)",
       "\uD83D\uDEC2 Security: quick at this small airport",
-      "\u2615 Airside: grab a coffee and Apfelstrudel \u2014 last taste of Austria!"
+      "\u2615 Airside: grab a coffee and Apfelstrudel \u2014 last taste of Austria!",
+      "\uD83D\uDEAA Gate closes 18:25 \u2014 be airside by 18:00"
     ],
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
     imageAlt: "Airport terminal"
@@ -488,16 +491,18 @@ export const STAGES = [
     tagColor: "#ff6b6b",
     tag: "BOARDING",
     weather: { temp: "6\u00B0C", condition: "Clear", icon: "\uD83C\uDF05", wind: "8 km/h", humidity: "60%" },
-    description: "Board easyJet EZY8696 back to London Gatwick. This is a 1-hour flight \u2014 one of the shortest Alpine returns. Seats are auto-allocated unless you paid to choose. Small cabin bag only (under seat) \u2014 your 23kg hold bags are in the hold.",
+    description: "Board easyJet EZY8696 back to London Gatwick North Terminal. All three in row 26 at the rear. Gate closes 18:25. Small cabin bag only (under seat) \u2014 your 23kg hold bags are in the hold.",
     walkthrough: [
-      "\u2708\uFE0F Flight: EZY8696 (easyJet)",
-      "\u23F0 Departure: 6:55 PM CET",
-      "\uD83D\uDEEC Arrives Gatwick: 7:55 PM GMT (local UK time)",
-      "\u23F1\uFE0F Flight duration: ~2 hours (1hr + 1hr time zone change)",
-      "\uD83C\uDFAB Booking ref: KBXZJFX",
-      "\uD83E\uDDF3 Cabin: small under-seat bag ONLY \u2014 no overhead bin bags",
+      "\u2708\uFE0F Flight: EZY8696 (easyJet) \u2014 ref KBXZJFX",
+      "\u23F0 Departure: 18:55 CET \u2014 Gate closes: 18:25",
+      "\uD83D\uDEEC Arrives Gatwick North Terminal: 19:55 GMT",
+      "\uD83D\uDCBA Row 26 (rear) \u2014 all three together:",
+      "   \u2192 Andy: 26A (window)",
+      "   \u2192 Lee: 26B (middle)",
+      "   \u2192 Jim: 26C (aisle)",
+      "\uD83E\uDDF3 Cabin: small under-seat bag ONLY (45x36x20cm)",
       "\uD83E\uDDF3 Hold: 3x 23kg bags included",
-      "\uD83D\uDCA1 Sit LEFT side for sunset views over the Alps on departure"
+      "\uD83D\uDCA1 Andy has the window \u2014 LEFT side, sunset views over the Alps on departure!"
     ],
     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
     imageAlt: "EasyJet aircraft"

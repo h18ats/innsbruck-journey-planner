@@ -341,15 +341,17 @@ export function App() {
                 React.createElement("div", { style: { fontSize: "0.7rem", color: "#4ecdc4", fontWeight: 700, marginBottom: 8 } }, "OUTBOUND \u2014 Fri 20 Mar"),
                 React.createElement("div", { style: { fontWeight: 700, fontSize: "1rem" } }, "BA2620"),
                 React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "LGW 7:45 AM \u2192 INN 10:45 AM"),
-                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "British Airways (BA Euroflyer)"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "BA Euroflyer \u00B7 Boarding 07:05"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#4ecdc4", marginTop: 4 } }, "Row 18: Andy 18F \u00B7 Lee 18E \u00B7 Jim 18D"),
                 React.createElement("div", { style: { fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 } }, "\u00A3207.64 (3 pax)")
               ),
               React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #ff6b6b" } },
                 React.createElement("div", { style: { fontSize: "0.7rem", color: "#ff6b6b", fontWeight: 700, marginBottom: 8 } }, "RETURN \u2014 Tue 24 Mar"),
                 React.createElement("div", { style: { fontWeight: 700, fontSize: "1rem" } }, "EZY8696"),
-                React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "INN 6:55 PM \u2192 LGW 7:55 PM"),
-                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "easyJet \u00B7 Ref: KBXZJFX"),
-                React.createElement("div", { style: { fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 } }, "\u20AC277.44 (3 pax, inc. 23kg bags)")
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "INN 18:55 \u2192 LGW 19:55"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "easyJet \u00B7 Ref: KBXZJFX \u00B7 Gate closes 18:25"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#4ecdc4", marginTop: 4 } }, "Row 26: Andy 26A \u00B7 Lee 26B \u00B7 Jim 26C"),
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 } }, "\u20AC277.44 (3 pax, inc. 3x 23kg bags)")
               )
             )
           ),
