@@ -386,6 +386,83 @@ export function App() {
             )
           ),
           React.createElement("div", { style: { background: "#14181f", borderRadius: 14, padding: "20px 24px", border: "1px solid #1e2433", marginBottom: 20 } },
+            React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, marginBottom: 16, color: "#4ecdc4" } }, "\uD83D\uDE97 Car Hire"),
+            React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #4ecdc4" } },
+              React.createElement("div", { style: { fontWeight: 700, fontSize: "1rem" } }, "Kia Stonic 5-door A/C"),
+              React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "Enterprise via DoYouSpain"),
+              React.createElement("div", { style: { fontSize: "0.85rem", color: "#4ecdc4", fontWeight: 600, marginTop: 8 } }, "Ref: DYS-201495906"),
+              React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 12 } },
+                [
+                  { label: "Pickup", value: "Fri 20 Mar, 11:00" },
+                  { label: "Return", value: "Tue 24 Mar, 18:00" },
+                  { label: "Location", value: "INN Arrivals Hall" },
+                  { label: "Total", value: "\u20AC287.80" },
+                  { label: "Prepaid", value: "\u20AC34.54" },
+                  { label: "Due on arrival", value: "\u20AC253.26" },
+                ].map((d, i) =>
+                  React.createElement("div", { key: i, style: { fontSize: "0.8rem" } },
+                    React.createElement("span", { style: { color: "#6b7588" } }, d.label + ": "),
+                    React.createElement("span", { style: { color: "#c0c8d8" } }, d.value)
+                  )
+                )
+              ),
+              React.createElement("div", { style: { borderTop: "1px solid #1e2433", marginTop: 12, paddingTop: 12, display: "flex", flexDirection: "column", gap: 4 } },
+                [
+                  "Credit card required (Visa/MC/Amex) in Andrew Batty's name",
+                  "CDW included (excess \u20AC1,200) \u2014 SCDW \u20AC24/day removes excess",
+                  "Deposit: \u20AC450 (\u20AC200 with SCDW)",
+                  "Additional driver: \u20AC9/day (max \u20AC90)",
+                  "Winter tyres included (Nov\u2013Apr)",
+                  "Snow chains: \u20AC42/rental \u2014 ask at desk",
+                  "Ski rack: \u20AC42/rental",
+                  "Vignette: should be included \u2014 CONFIRM at desk",
+                  "Fuel: full-to-full \u2014 \u20AC18 refueling charge if not full",
+                  "Unlimited mileage",
+                  "\uD83D\uDCDE Enterprise: +43 7203712501500",
+                ].map((line, i) =>
+                  React.createElement("div", { key: i, style: { fontSize: "0.78rem", color: "#8892a4" } }, line)
+                )
+              )
+            )
+          ),
+          React.createElement("div", { style: { background: "#14181f", borderRadius: 14, padding: "20px 24px", border: "1px solid #1e2433", marginBottom: 20 } },
+            React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, marginBottom: 16, color: "#a78bfa" } }, "\uD83C\uDFC2 Snowboard Hire"),
+            React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #a78bfa" } },
+              React.createElement("div", { style: { fontWeight: 700, fontSize: "1rem" } }, "2x Master 5* Snowboard + Boots"),
+              React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "Hervis Imst (2beGROUP)"),
+              React.createElement("div", { style: { fontSize: "0.85rem", color: "#a78bfa", fontWeight: 600, marginTop: 8 } }, "Ref: BPPLCA"),
+              React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 12 } },
+                [
+                  { label: "Store", value: "Industriezone 35, 6460 Imst" },
+                  { label: "Period", value: "20/03 \u2013 24/03/2026" },
+                  { label: "Hours (Fri)", value: "9:00\u201318:00" },
+                  { label: "Hours (Tue)", value: "9:00\u201318:00" },
+                  { label: "Paid", value: "\u00A3135.36 online" },
+                  { label: "Due in store", value: "\u20AC0.00" },
+                ].map((d, i) =>
+                  React.createElement("div", { key: i, style: { fontSize: "0.8rem" } },
+                    React.createElement("span", { style: { color: "#6b7588" } }, d.label + ": "),
+                    React.createElement("span", { style: { color: "#c0c8d8" } }, d.value)
+                  )
+                )
+              ),
+              React.createElement("div", { style: { borderTop: "1px solid #1e2433", marginTop: 12, paddingTop: 12, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 } },
+                React.createElement("div", { style: { background: "#14181f", borderRadius: 8, padding: "10px 12px" } },
+                  React.createElement("div", { style: { fontSize: "0.7rem", color: "#a78bfa", fontWeight: 700, marginBottom: 4 } }, "ANDY (RXBPPLCA0)"),
+                  React.createElement("div", { style: { fontSize: "0.78rem", color: "#c0c8d8" } }, "176cm / 90kg / Shoe 42"),
+                  React.createElement("div", { style: { fontSize: "0.78rem", color: "#8892a4" } }, "Expert")
+                ),
+                React.createElement("div", { style: { background: "#14181f", borderRadius: 8, padding: "10px 12px" } },
+                  React.createElement("div", { style: { fontSize: "0.7rem", color: "#a78bfa", fontWeight: 700, marginBottom: 4 } }, "LEE (RXBPPLCA1)"),
+                  React.createElement("div", { style: { fontSize: "0.78rem", color: "#c0c8d8" } }, "163cm / 85kg / Shoe 41"),
+                  React.createElement("div", { style: { fontSize: "0.78rem", color: "#8892a4" } }, "Expert")
+                )
+              ),
+              React.createElement("div", { style: { fontSize: "0.78rem", color: "#6b7588", marginTop: 10 } }, "\uD83D\uDCDE +43 5412 638132 \u00B7 hm17-300.imst@hervis.at"),
+              React.createElement("div", { style: { fontSize: "0.78rem", color: "#6b7588", marginTop: 4 } }, "Jim: own gear \u2014 nothing to collect")
+            )
+          ),
+          React.createElement("div", { style: { background: "#14181f", borderRadius: 14, padding: "20px 24px", border: "1px solid #1e2433", marginBottom: 20 } },
             React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, marginBottom: 16, color: "#ff6b6b" } }, "\uD83D\uDCB0 Cost Breakdown (excl. resort costs)"),
             TRIP_SUMMARY.costs.map((c, i) =>
               React.createElement("div", { key: i, style: { display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: i < TRIP_SUMMARY.costs.length - 1 ? "1px solid #1e2433" : "none" } },
