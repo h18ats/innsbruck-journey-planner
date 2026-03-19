@@ -369,6 +369,29 @@ export function App() {
             )
           ),
           React.createElement("div", { style: { background: "#14181f", borderRadius: 14, padding: "20px 24px", border: "1px solid #1e2433", marginBottom: 20 } },
+            React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, marginBottom: 16, color: "#a78bfa" } }, "\uD83D\uDE95 Taxis"),
+            React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 } },
+              React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #4ecdc4" } },
+                React.createElement("div", { style: { fontSize: "0.7rem", color: "#4ecdc4", fontWeight: 700, marginBottom: 8 } }, "TO GATWICK \u2014 Fri 20 Mar"),
+                React.createElement("div", { style: { fontWeight: 700 } }, "05:30 \u2014 Estate Car"),
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "Upper Gatton Park \u2192 Gatwick South"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "Ref: 798854 \u00B7 Mr J Herbert"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "\uD83D\uDCDE 07775 578900"),
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 } }, "\u00A355.00 cash/card")
+              ),
+              React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #ff6b6b" } },
+                React.createElement("div", { style: { fontSize: "0.7rem", color: "#ff6b6b", fontWeight: 700, marginBottom: 8 } }, "FROM GATWICK \u2014 Tue 24 Mar"),
+                React.createElement("div", { style: { fontWeight: 700 } }, "19:55 \u2014 Estate Car"),
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#8892a4", marginTop: 4 } }, "Gatwick \u2192 Upper Gatton Park"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "Ref: 798855 \u00B7 Mr J Herbert"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#6b7588", marginTop: 2 } }, "Meeting flight EZY8696 \u00B7 3x hold bags"),
+                React.createElement("div", { style: { fontSize: "0.8rem", color: "#ff6b6b", marginTop: 4 } }, "\u26A0\uFE0F Booked from South \u2014 easyJet lands at NORTH"),
+                React.createElement("div", { style: { fontSize: "0.85rem", color: "#ffd93d", fontWeight: 600, marginTop: 8 } }, "\u00A360.00 cash/card")
+              )
+            ),
+            React.createElement("div", { style: { fontSize: "0.78rem", color: "#6b7588", marginTop: 12 } }, "W3W pickup: ///energy.magma.exile \u2014 white signpost at bottom of drive, take right fork approaching house")
+          ),
+          React.createElement("div", { style: { background: "#14181f", borderRadius: 14, padding: "20px 24px", border: "1px solid #1e2433", marginBottom: 20 } },
             React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, marginBottom: 16, color: "#ffd93d" } }, "\uD83C\uDFE8 Accommodation"),
             React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 } },
               React.createElement("div", { style: { background: "#0e1118", borderRadius: 12, padding: "16px", borderLeft: "3px solid #ffd93d" } },

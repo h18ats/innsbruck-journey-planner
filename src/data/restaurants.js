@@ -76,6 +76,8 @@ export const TRIP_SUMMARY = {
     { date: "Tue 24 Mar", label: "Ski + Travel Home", detail: "Ski morning \u2192 drive to INN \u2192 EZY8696 \u2192 LGW" },
   ],
   costs: [
+    { item: "Taxi to Gatwick (outbound, ref 798854)", cost: "\u00A355.00" },
+    { item: "Taxi from Gatwick (return, ref 798855)", cost: "\u00A360.00" },
     { item: "BA outbound (3 pax)", cost: "\u00A3207.64" },
     { item: "easyJet return (3 pax)", cost: "\u20AC277 (~\u00A3235)" },
     { item: "Hotel Bruggner Stub'n (1 night, triple)", cost: "Booking ref: 5825157964" },
