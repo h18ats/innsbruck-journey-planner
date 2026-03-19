@@ -10,6 +10,8 @@ export function App() {
   const [activeStage, setActiveStage] = useState(0);
   const [view, setView] = useState("journey");
   const [animKey, setAnimKey] = useState(0);
+  const [summaryFilter, setSummaryFilter] = useState("all"); // all | outbound | return
+  const [journeyFilter, setJourneyFilter] = useState("all"); // all | outbound | resort | return
 
   useEffect(() => {
     const init = async () => {
@@ -194,12 +196,22 @@ export function App() {
           React.createElement("aside", { className: "sidebar", style: { width: 280, minWidth: 280, borderRight: "1px solid #1e2433", overflowY: "auto", background: "#0e1118", display: "flex", flexDirection: "column" } },
             React.createElement("div", { style: { padding: "1rem", borderBottom: "1px solid #1e2433" } },
               React.createElement("div", { style: { fontSize: "0.7rem", color: "#8892a4", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 } }, `Journey Steps (${STAGES.length})`),
-              React.createElement("div", { style: { display: "flex", gap: 4 } },
+              React.createElement("div", { style: { display: "flex", gap: 4, marginBottom: 10 } },
                 STAGES.map((s, i) => React.createElement("div", { key: i, style: { flex: 1, height: 3, borderRadius: 2, background: i <= activeStage ? typeColors[s.type] || "#4ecdc4" : "#252b38", transition: "background 0.3s" } }))
+              ),
+              React.createElement("div", { style: { display: "flex", gap: 4 } },
+                [{ id: "all", label: "All" }, { id: "outbound", label: "\u2708 Out" }, { id: "resort", label: "\u26F7 Resort" }, { id: "return", label: "\u2708 Back" }].map(f =>
+                  React.createElement("button", {
+                    key: f.id, onClick: () => setJourneyFilter(f.id),
+                    style: { flex: 1, padding: "5px 4px", borderRadius: 6, border: journeyFilter === f.id ? "1px solid #4ecdc4" : "1px solid #252b38", background: journeyFilter === f.id ? "rgba(78,205,196,0.1)" : "transparent", color: journeyFilter === f.id ? "#4ecdc4" : "#6b7588", cursor: "pointer", fontSize: "0.65rem", fontWeight: 600, fontFamily: "inherit" }
+                  }, f.label)
+                )
               )
             ),
-            STAGES.map((s, i) =>
-              React.createElement("button", {
+            STAGES.map((s, i) => {
+              const section = i <= 12 ? "outbound" : i <= 14 ? "resort" : "return";
+              if (journeyFilter !== "all" && section !== journeyFilter) return null;
+              return React.createElement("button", {
                 key: i, onClick: () => goTo(i),
                 style: { display: "flex", alignItems: "center", gap: 10, padding: "12px 16px", background: i === activeStage ? "rgba(78,205,196,0.08)" : "transparent", border: "none", borderLeft: i === activeStage ? `3px solid ${typeColors[s.type]}` : "3px solid transparent", color: i === activeStage ? "#e4e8f0" : "#6b7588", cursor: "pointer", textAlign: "left", transition: "all 0.2s", width: "100%", fontFamily: "inherit" }
               },
@@ -208,8 +220,8 @@ export function App() {
                   React.createElement("div", { style: { fontSize: "0.65rem", color: typeColors[s.type], fontWeight: 600, fontFamily: "monospace" } }, s.time),
                   React.createElement("div", { style: { fontSize: "0.82rem", fontWeight: i === activeStage ? 600 : 400, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" } }, s.title)
                 )
-              )
-            )
+              );
+            })
           ),
           React.createElement("main", { key: animKey, style: { flex: 1, overflowY: "auto", padding: 0 } },
             React.createElement("div", { style: { position: "relative", width: "100%", height: 300, overflow: "hidden", background: "#14181f" } },
