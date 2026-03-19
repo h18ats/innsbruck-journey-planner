@@ -254,6 +254,8 @@ export const STAGES = [
       "\uD83D\uDCB0 \u00A3135.36 paid online \u2014 nothing to pay in store",
       "\uD83D\uDE97 12:45 \u2014 Back on the road to St Anton"
     ],
+    wazeUrl: "https://waze.com/ul?q=Industriezone%2035%2C%206460%20Imst%2C%20Austria&navigate=yes",
+    wazeLabel: "Navigate to Hervis Imst",
     image: "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80",
     imageAlt: "Snowboard equipment"
   },
@@ -509,6 +511,8 @@ export const STAGES = [
       "\uD83D\uDD50 Store open until 18:00 Tue \u2014 plenty of time",
       "\uD83D\uDE97 16:30 \u2014 Back on the road to the airport"
     ],
+    wazeUrl: "https://waze.com/ul?q=Industriezone%2035%2C%206460%20Imst%2C%20Austria&navigate=yes",
+    wazeLabel: "Navigate to Hervis Imst",
     image: "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80",
     imageAlt: "Snowboard equipment"
   },
