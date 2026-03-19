@@ -2,6 +2,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 
 export const ALLOWED_EMAILS = [
   "andy.batty@hotmail.com",
+  "andyandlucy@hotmail.com",
   "jh@yellowbus.cc",
   "j.d.herbert@outlook.com",
   "lee.a.curtis@gmail.com",
