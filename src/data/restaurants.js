@@ -80,6 +80,7 @@ export const TRIP_SUMMARY = {
     { item: "easyJet return (3 pax)", cost: "\u20AC277 (~\u00A3235)" },
     { item: "Hotel Bruggner Stub'n (1 night, triple)", cost: "Booking ref: 5825157964" },
     { item: "Enterprise \u2014 Kia Stonic 4 days (DYS-201495906)", cost: "\u20AC287.80 (~\u00A3240)" },
+    { item: "Snowboard hire \u2014 2x Master 5* + boots (BPPLCA)", cost: "\u00A3135.36" },
     { item: "Ski Arlberg half-day Fri (2 pax \u2014 Jim has season pass)", cost: "\u20AC125" },
     { item: "Ski Arlberg 4-day Sat\u2013Tue (2 pax)", cost: "\u20AC636" },
     { item: "Chip card deposit (2 pax, refundable)", cost: "\u20AC10" },
