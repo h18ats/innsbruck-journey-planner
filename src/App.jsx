@@ -290,6 +290,27 @@ export function App() {
             React.createElement("h2", { style: { fontSize: "2rem", fontWeight: 700, marginBottom: 8 } }, "\uD83C\uDFC2 Ski Routes from Nassereinbahn"),
             React.createElement("p", { style: { color: "#8892a4", fontSize: "1rem" } }, "Expert snowboard routes \u2014 mostly reds with off-piste options \u2014 starting from Gampen (1,850m)")
           ),
+          React.createElement("div", { style: { background: "#14181f", borderRadius: 16, border: "1px solid #1e2433", overflow: "hidden", marginBottom: "2rem" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid #1e2433" } },
+              React.createElement("h3", { style: { fontSize: "1rem", fontWeight: 700, margin: 0, display: "flex", alignItems: "center", gap: 8 } }, "\uD83D\uDDFA\uFE0F Ski Arlberg Piste Map"),
+              React.createElement("div", { style: { display: "flex", gap: 6 } },
+                React.createElement("a", { href: "https://winter.intermaps.com/skiarlberg?lang=en", target: "_blank", rel: "noopener noreferrer", style: { padding: "6px 12px", borderRadius: 8, border: "1px solid #4ecdc4", background: "rgba(78,205,196,0.1)", color: "#4ecdc4", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600 } }, "\uD83D\uDD17 Interactive Map"),
+                React.createElement("a", { href: "https://www.skiarlberg.at/en/live-info/map-navigation", target: "_blank", rel: "noopener noreferrer", style: { padding: "6px 12px", borderRadius: 8, border: "1px solid #a78bfa", background: "rgba(167,139,250,0.1)", color: "#a78bfa", textDecoration: "none", fontSize: "0.75rem", fontWeight: 600 } }, "\uD83C\uDFBF Official Site")
+              )
+            ),
+            React.createElement("div", { style: { position: "relative", width: "100%", overflow: "auto", cursor: "grab", WebkitOverflowScrolling: "touch" } },
+              React.createElement("img", {
+                src: "https://vcdn.bergfex.at/images/resized/0e/a236879e501d050e_862a1d68f86a40e2@2x.jpg",
+                alt: "Ski Arlberg Piste Map 2024-25",
+                style: { width: "150%", minWidth: 1200, display: "block" },
+                onError: (e) => { e.target.src = "https://piste-maps.co.uk/Piste-Maps/Austria/Ski-Arlberg-Piste-Ski-Map-2024-25.jpg"; }
+              })
+            ),
+            React.createElement("div", { style: { padding: "10px 16px", borderTop: "1px solid #1e2433", display: "flex", justifyContent: "space-between", alignItems: "center" } },
+              React.createElement("span", { style: { fontSize: "0.75rem", color: "#6b7588" } }, "Scroll/drag to pan \u00B7 Pinch to zoom on mobile"),
+              React.createElement("span", { style: { fontSize: "0.75rem", color: "#6b7588" } }, "300+ km \u00B7 200+ runs \u00B7 88 lifts")
+            )
+          ),
           React.createElement("div", { style: { display: "flex", gap: 8, justifyContent: "center", marginBottom: "2rem", flexWrap: "wrap" } },
             React.createElement("button", { onClick: () => { document.getElementById("routes-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #ffd93d", background: "rgba(255,217,61,0.1)", color: "#ffd93d", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\uD83D\uDDFA Routes"),
             React.createElement("button", { onClick: () => { document.getElementById("premium-section")?.scrollIntoView({ behavior: "smooth" }); }, style: { padding: "8px 16px", borderRadius: 8, border: "1px solid #a78bfa", background: "rgba(167,139,250,0.1)", color: "#a78bfa", cursor: "pointer", fontSize: "0.8rem", fontWeight: 600 } }, "\u2B50 Premium Stops"),
